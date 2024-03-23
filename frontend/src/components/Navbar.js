@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Navbar.css'
 import { BrowserRouter as Router, Route, Switch,Link, Routes } from 'react-router-dom';
 
 const Navbar = () => {
+  const auth=localStorage.getItem('user');
   return (
     <nav className="navbar">
       <div className="container">
@@ -26,15 +27,20 @@ const Navbar = () => {
           <li className="nav-item">
           <Link to='/update' className="nav-link">update product</Link>
           </li>
-          <li className="nav-item">
-          <Link to='/logout' className="nav-link">log out</Link>
-          </li>
+          
           <li className="nav-item">
           <Link to='/profile' className="nav-link">profile</Link>
           </li>
-          <li className="nav-item">
+          
+          
+          {
+            !auth?  <li className="nav-item">
           <Link to='/signup' className="nav-link">signup</Link>
+          </li>:<li className="nav-item">
+          <Link to='/logout' className="nav-link">log out</Link>
           </li>
+          }
+          
         </ul>
       </div>
     </nav>

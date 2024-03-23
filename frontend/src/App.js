@@ -7,17 +7,19 @@ import About from '../src/components/About';
 import Contact from '../src/components/ContactUs';
 import Services from '../src/components/Services';
 import Signup from './components/Signup';
-
+import PrivateComponent from './components/PrivateComponent';
 function App() {
   return (
     <div className="App">
     <BrowserRouter>
     <Navbar></Navbar>
       <Routes>
+      <Route Component={PrivateComponent}>
       <Route path='/' Component={Home}></Route>
       <Route path='/about' Component={About}></Route>
       <Route path='/services' Component={Services}></Route>
       <Route path='/contact' Component={Contact}></Route>
+      </Route>
       <Route path='/signup' Component={Signup}></Route>
       </Routes>
     </BrowserRouter>
