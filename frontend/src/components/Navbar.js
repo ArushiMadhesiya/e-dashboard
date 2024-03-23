@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react';
 import './Navbar.css'
-import { BrowserRouter as Router, Route, Switch,Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch,Link, Routes,useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const auth=localStorage.getItem('user');
+  const navigate=useNavigate();
+  const logout=()=>{
+    localStorage.clear();
+    navigate('/')
+  }
   return (
     <nav className="navbar">
       <div className="container">
@@ -37,7 +42,7 @@ const Navbar = () => {
             !auth?  <li className="nav-item">
           <Link to='/signup' className="nav-link">signup</Link>
           </li>:<li className="nav-item">
-          <Link to='/logout' className="nav-link">log out</Link>
+          <Link to='/signup' className="nav-link" onClick={logout}>log out</Link>
           </li>
           }
           
