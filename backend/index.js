@@ -52,5 +52,16 @@ app.post('/add-product',async(req,res)=>{
     console.warn(result);
     res.send(req.body);
 })
+// product list api
+app.get('/products', async(req,res)=>{
+    const result=await ProductModel.find({});
+    if(result.length){
+        res.send(result);
+    }
+    else{
+        res.send({result:"no products  present"});
+    }
+    
+})
 const port=3001;
 app.listen(port);

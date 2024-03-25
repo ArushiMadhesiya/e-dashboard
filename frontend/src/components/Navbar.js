@@ -33,6 +33,9 @@ const Navbar = () => {
           <Link to='/add' className="nav-link">add product</Link>
           </li>
           <li className="nav-item">
+          <Link to='/products' className="nav-link">product list</Link>
+          </li>
+          <li className="nav-item">
           <Link to='/update' className="nav-link">update product</Link>
           </li>
           <li className="nav-item">
