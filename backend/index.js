@@ -2,6 +2,7 @@
 const express=require('express');
 const cors=require('cors');
 const UserModel=require('./db/UserModel');
+const ProductModel=require('./db/ProductModel');
 require('./db/config');
 const app=express();
 app.use(express.json());
@@ -42,6 +43,14 @@ app.post('/login',async(req,res)=>{
         res.send({result:"usernotfound"});
     }
     
+})
+// add product api
+app.post('/add-product',async(req,res)=>{
+    const data=req.body;
+    const product=new ProductModel(data);
+    const result=await product.save();
+    console.warn(result);
+    res.send(req.body);
 })
 const port=3001;
 app.listen(port);

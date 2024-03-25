@@ -34,8 +34,9 @@ const Signup = () => {
         "Content-type": "application/json",
       },
     });
-    localStorage.setItem("user", JSON.stringify(data));
+    
     result = result.json();
+    localStorage.setItem("user", JSON.stringify(await result));
     if (result) {
       console.warn(await result);
       // redirect after sign up

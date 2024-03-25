@@ -9,6 +9,7 @@ import Services from '../src/components/Services';
 import Signup from './components/Signup';
 import PrivateComponent from './components/PrivateComponent';
 import Login from './components/Login';
+import AddProduct from './components/AddProduct';
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
       <Route path='/about' Component={About}></Route>
       <Route path='/services' Component={Services}></Route>
       <Route path='/contact' Component={Contact}></Route>
+      <Route path='/add' Component={AddProduct}></Route>
       </Route>
       <Route path='/signup' Component={Signup}></Route>
       <Route path='/login' Component={Login}></Route>
