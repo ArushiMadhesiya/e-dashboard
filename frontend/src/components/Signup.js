@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 const Signup = () => {
@@ -14,6 +14,7 @@ const Signup = () => {
   const [name, nsetter] = useState("");
   const [email, esetter] = useState("");
   const [pw, pwsetter] = useState("");
+  
   const n = (data) => {
     nsetter(data);
   };
@@ -24,7 +25,7 @@ const Signup = () => {
     pwsetter(data);
   };
   const submit = async () => {
-    const data = { name:name,email: email,password: pw };
+    const data = { name: name, email: email, password: pw };
     // api integration post api
     // with fetch, could do with axios too
     let result = await fetch("http://localhost:3001/register", {
@@ -34,7 +35,7 @@ const Signup = () => {
         "Content-type": "application/json",
       },
     });
-    
+
     result = result.json();
     localStorage.setItem("user", JSON.stringify(await result));
     if (result) {
@@ -45,6 +46,7 @@ const Signup = () => {
     //console.warn({name,email,pw});
     //console.warn("result",result);
   };
+
   return (
     <div className="register">
       <h1>register</h1>
@@ -55,6 +57,7 @@ const Signup = () => {
         value={name}
         onChange={(event) => n(event.target.value)}
       ></input>
+      
       <input
         type="text"
         className="textbox"
