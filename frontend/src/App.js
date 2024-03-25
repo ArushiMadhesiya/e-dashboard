@@ -8,6 +8,7 @@ import Contact from '../src/components/ContactUs';
 import Services from '../src/components/Services';
 import Signup from './components/Signup';
 import PrivateComponent from './components/PrivateComponent';
+import Login from './components/Login';
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
       <Route path='/contact' Component={Contact}></Route>
       </Route>
       <Route path='/signup' Component={Signup}></Route>
+      <Route path='/login' Component={Login}></Route>
       </Routes>
     </BrowserRouter>
     

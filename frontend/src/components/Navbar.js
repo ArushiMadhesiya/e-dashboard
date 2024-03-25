@@ -41,11 +41,20 @@ const Navbar = () => {
           {
             !auth?  <li className="nav-item">
           <Link to='/signup' className="nav-link">signup</Link>
-          </li>:<li className="nav-item">
+          </li>
+          :
+          <li className="nav-item">
           <Link to='/signup' className="nav-link" onClick={logout}>log out</Link>
           </li>
+           
           }
-          
+          {
+            !auth?  <li className="nav-item">
+          <Link to='/login' className="nav-link">login</Link>
+          </li>
+          :
+          null
+          }
         </ul>
       </div>
     </nav>

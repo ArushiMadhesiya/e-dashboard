@@ -13,7 +13,7 @@ const Signup = () => {
 
   const [name, nsetter] = useState("");
   const [email, esetter] = useState("");
-  const [pw, pwsetter] = useState(undefined);
+  const [pw, pwsetter] = useState("");
   const n = (data) => {
     nsetter(data);
   };
@@ -24,7 +24,7 @@ const Signup = () => {
     pwsetter(data);
   };
   const submit = async () => {
-    const data = { name, email, pw };
+    const data = { name:name,email: email,password: pw };
     // api integration post api
     // with fetch, could do with axios too
     let result = await fetch("http://localhost:3001/register", {
@@ -37,6 +37,7 @@ const Signup = () => {
     localStorage.setItem("user", JSON.stringify(data));
     result = result.json();
     if (result) {
+      console.warn(await result);
       // redirect after sign up
       navigate("/");
     }
