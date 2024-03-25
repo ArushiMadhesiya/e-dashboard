@@ -3,6 +3,7 @@ const express=require('express');
 const cors=require('cors');
 const UserModel=require('./db/UserModel');
 const ProductModel=require('./db/ProductModel');
+const { ObjectId } = require('mongodb');
 require('./db/config');
 const app=express();
 app.use(express.json());
@@ -62,6 +63,14 @@ app.get('/products', async(req,res)=>{
         res.send({result:"no products  present"});
     }
     
+})
+//delete api
+app.delete('/products/:id',async(req,res)=>{
+    const filter = {
+        _id:new ObjectId(req.params.id)
+    }
+    const result = await ProductModel.deleteOne(filter);
+    res.send(result);
 })
 const port=3001;
 app.listen(port);
