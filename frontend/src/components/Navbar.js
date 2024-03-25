@@ -7,13 +7,16 @@ const Navbar = () => {
   const navigate=useNavigate();
   const logout=()=>{
     localStorage.clear();
-    navigate('/')
+    navigate('/signup')
   }
   return (
     <nav className="navbar">
       <div className="container">
         <h1 className="navbar-logo">Logo</h1>
-        <ul className="nav-menu">
+        {
+          auth?
+          <ul className="nav-menu">
+        
           <li className="nav-item">
             <Link to='/' className="nav-link">HOME</Link>
           </li>
@@ -32,30 +35,20 @@ const Navbar = () => {
           <li className="nav-item">
           <Link to='/update' className="nav-link">update product</Link>
           </li>
-          
           <li className="nav-item">
-          <Link to='/profile' className="nav-link">profile</Link>
+          <Link to='/signup' className="nav-link" onClick={logout}> logout({(JSON.parse(auth).name)})</Link>
           </li>
-          
-          
-          {
-            !auth?  <li className="nav-item">
-          <Link to='/signup' className="nav-link">signup</Link>
-          </li>
+          </ul>
           :
+          <ul className="nav-menu">
           <li className="nav-item">
-          <Link to='/signup' className="nav-link" onClick={logout}>log out</Link>
+            <Link to='/signup' className="nav-link">signup</Link>
           </li>
-           
-          }
-          {
-            !auth?  <li className="nav-item">
-          <Link to='/login' className="nav-link">login</Link>
+          <li className="nav-item">
+            <Link to='/login' className="nav-link">login</Link>
           </li>
-          :
-          null
-          }
-        </ul>
+          </ul>
+        }
       </div>
     </nav>
    
