@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const AddProduct = () => {
-
   const auth = localStorage.getItem('user');
   const [formData, setFormData] = useState({
     name: '',

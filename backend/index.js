@@ -72,5 +72,27 @@ app.delete('/products/:id',async(req,res)=>{
     const result = await ProductModel.deleteOne(filter);
     res.send(result);
 })
+// update api
+app.put('/products/:id',async(req,res)=>{
+   // console.warn((req.params.id));
+    const filter={
+        _id:new ObjectId(req.params.id)
+    }
+    const op={
+        $set:req.body
+    }
+    const result=await ProductModel.updateOne(filter,op);
+    console.warn("updated");
+    res.send(result);
+})
+// get single item api
+app.get('/products/:id', async(req,res)=>{
+    const filter={
+        _id:new ObjectId(req.params.id)
+    }
+    const result=await ProductModel.findOne(filter);
+    //console.warn(result);
+    res.send(result)
+})
 const port=3001;
 app.listen(port);

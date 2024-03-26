@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./ProductList.css"; // Import CSS file for styling
+import {useNavigate} from 'react-router-dom';
 
 // Product component to display individual product details
-const Product = ({ id, name, price, category, company, onDelete }) => (
+const Product = ({ id, name, price, category, company, onDelete,onUpdate }) => (
   <div className="product-card">
     <div className="product-name">{name}</div>
     <div className="product-info">
@@ -10,6 +11,7 @@ const Product = ({ id, name, price, category, company, onDelete }) => (
       <div className="product-category">{category}</div>
       <div className="product-company">by {company}</div>
       <button onClick={() => onDelete(id)} className="delete-button">Delete</button>
+      <button onClick={() => onUpdate(id)} className="update-button">Update</button>
     </div>
   </div>
 );
@@ -18,7 +20,7 @@ const Product = ({ id, name, price, category, company, onDelete }) => (
 // ProductList component to display a list of products
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-  
+  const navigate=useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,6 +46,11 @@ const ProductList = () => {
     }
   };
 
+  const handleUpdate =async(productId)=>{
+    const url = `/update/${productId}`;
+    navigate(url);
+  }
+
   return (
     <div className="product-container">
       {products.map((product) => (
@@ -55,6 +62,7 @@ const ProductList = () => {
           category={product.category}
           company={product.company}
           onDelete={handleDelete}
+          onUpdate={handleUpdate}
         />
       ))}
     </div>
