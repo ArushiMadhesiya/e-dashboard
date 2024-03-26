@@ -94,5 +94,17 @@ app.get('/products/:id', async(req,res)=>{
     //console.warn(result);
     res.send(result)
 })
+// searchapi
+app.get('/search/:key',async(req,res)=>{
+    const filter={
+        $or:[
+            {name:{$regex:req.params.key}},
+            {category:{$regex:req.params.key}},
+            {brand:{$regex:req.params.key}},
+        ]
+    }
+    const result =await ProductModel.find(filter);
+    res.send(result);
+})
 const port=3001;
 app.listen(port);
