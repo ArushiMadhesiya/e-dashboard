@@ -35,16 +35,15 @@ const Signup = () => {
         "Content-type": "application/json",
       },
     });
-
-    result = result.json();
-    localStorage.setItem("user", JSON.stringify(await result));
-    if (result) {
-      console.warn(await result);
-      // redirect after sign up
+   
+   result=await result.json();
+  console.warn( result);
+    
+    localStorage.setItem("user", JSON.stringify( result.result));
+    localStorage.setItem("token", JSON.stringify( result.auth));
+   
       navigate("/");
-    }
-    //console.warn({name,email,pw});
-    //console.warn("result",result);
+    
   };
 
   return (

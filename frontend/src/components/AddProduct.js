@@ -48,6 +48,7 @@ const AddProduct = () => {
       body: JSON.stringify(formData),
       headers: {
         "Content-type": "application/json",
+        authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
       },
     });
     console.log(result);

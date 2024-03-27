@@ -29,9 +29,11 @@ const Login = () => {
     });
     result=await result.json();
     console.warn(result);
-    if(result.name){
+    // after jwt , result is like {user:{}, auth:token}
+    if(result.auth){
       console.warn("found");
-      localStorage.setItem("user",JSON.stringify( result));
+      localStorage.setItem("user",JSON.stringify( result.user));
+      localStorage.setItem("token",JSON.stringify( result.auth));
       navigate("/");
     }
     else{

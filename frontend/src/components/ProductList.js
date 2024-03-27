@@ -37,7 +37,14 @@ const ProductList = () => {
   }, []);
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3001/products");
+      const response = await fetch("http://localhost:3001/products",{
+        headers:{
+          // getting jwt token on the frontend
+          authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+        }
+      }
+      
+      );
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -48,6 +55,10 @@ const ProductList = () => {
     try {
       await fetch(`http://localhost:3001/products/${productId}`, {
         method: "DELETE",
+        headers:{
+          // getting jwt token on the frontend
+          authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+        }
       });
       setProducts(products.filter((product) => product._id !== productId));
     } catch (error) {
@@ -67,7 +78,13 @@ const ProductList = () => {
     if (key) {
       console.warn(key);
       // setter(e);
-      let result = await fetch(`http://localhost:3001/search/${key}`);
+      let result = await fetch(`http://localhost:3001/search/${key}`,{
+        headers:{
+          // getting jwt token on the frontend
+          authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+        }
+      }
+      );
       result = await result.json();
       console.warn(result);
       setProducts(result);

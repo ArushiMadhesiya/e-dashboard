@@ -18,7 +18,12 @@ const UpdateProduct = () => {
     console.warn("hi");
     // api call for prefilling 
     const url= `http://localhost:3001/products/${productId}`;
-    let data=await fetch(url)
+    let data=await fetch(url,{
+      headers:{
+        // getting jwt token on the frontend
+        authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+      }
+    })
     data=await data.json();
     console.warn("already present", data);
     setFormData(data)
@@ -34,7 +39,8 @@ const UpdateProduct = () => {
         const response = await fetch(url, {
           method: 'PUT', // or 'POST' if your API endpoint is configured to accept POST requests
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
           },
           body: JSON.stringify(formData)
         });
